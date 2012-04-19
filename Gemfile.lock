@@ -1,0 +1,27 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    adsf (1.1.1)
+      rack (>= 1.0.0)
+    commonjs (0.2.5)
+    cri (2.2.1)
+    kramdown (0.13.5)
+    less (2.1.0)
+      commonjs (~> 0.2.0)
+      therubyracer (~> 0.10.0)
+    libv8 (3.3.10.4)
+    rack (1.4.1)
+    rainpress (1.0)
+    therubyracer (0.10.1)
+      libv8 (~> 3.3.10)
+
+PLATFORMS
+  java
+  ruby
+
+DEPENDENCIES
+  adsf
+  cri
+  kramdown
+  less
+  rainpress
