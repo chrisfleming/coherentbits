@@ -13,9 +13,18 @@
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
-compile '/stylesheet/'  do
+compile '/assets/bootstrap/less/*'  do
+  print "Doing bootstrap"
   filter :less
   filter :rainpress
+end
+
+compile '/assets/bootstap/*' do
+  # No Action
+end
+
+compile '/assets/bootstap/*/*' do
+  # No Action
 end
 
 
@@ -48,6 +57,10 @@ compile '*' do
   end
 
 
+end
+
+route '/assets/bootstrap/*/*' do
+  # nothing
 end
 
 route '/stylesheet/' do
