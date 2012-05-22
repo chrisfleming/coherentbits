@@ -12,6 +12,7 @@ GEM
     libv8 (3.3.10.4)
     rack (1.4.1)
     rainpress (1.0)
+    rdiscount (1.6.8)
     therubyracer (0.10.1)
       libv8 (~> 3.3.10)
 
@@ -25,3 +26,4 @@ DEPENDENCIES
   kramdown
   less
   rainpress
+  rdiscount
