@@ -1,0 +1,358 @@
+---
+title: Spokes Traffic Counts
+layout: visualisations
+---
+
+:css
+  .sc {height:30px; margin-bottom: 8px; font-size: 16px; line-height: 27px; font-weight: bold;}
+  .sc-left-label {float:left; }
+  .sc-left-data {float:right; background-color: #CCC;}
+  .sc-right-label {float:right; text-align: right; }
+  .sc-right-data {float:left; background-color: #CCC;}
+  .sc-car { background-image:url('/visualisation/spokes/car.png'); background-repeat:repeat-x;}
+  .sc-bike { background-image:url('/visualisation/spokes/cycling.png'); background-repeat:repeat-x;}
+  .sc-commercial { background-image:url('/visualisation/spokes/truck3.png'); background-repeat:repeat-x;}
+  .cont {width: 225px; height: 300px;}
+
+.row
+  .span12
+    %h1 Spokes Traffic Counts
+
+    %p
+      The data below is based on the latest set of
+      %a{ :href => 'http://www.spokes.org.uk/wordpress/documents/technical-and-research/spokes-traffic-counts/'}
+        Spokes Traffic Count Data 
+      from November 2012. The counts are for the hour between 8 and 9am.
+
+.row
+  .span6
+    %h2 Forest Road
+    %a{ :href => 'http://www.openstreetmap.org/?lat=55.94643&lon=-3.19085&zoom=17&layers=C' }
+      %img{:src => '/visualisation/spokes/forest_road.png', :width => '460px', :height => '200px'}
+
+  .span6
+    %h2 Lothian Road
+    %a{ :href => 'http://www.openstreetmap.org/?lat=55.94643&lon=-3.20544&zoom=17&layers=C'}
+      %img{:src => '/visualisation/spokes/lothian_road.png', :width => '460px', :height => '200px' }
+
+.row
+  .span6
+    %div{:style => "width:228px; border-right:1px solid #AAA; float:left;"}
+      %h3 Southbound
+      %div{:style =>"width: 204px;", :class=>"sc sc-left-label"} 8%
+      %div{:style =>"width: 24px;", :class=>"sc sc-left-data sc-bike"}
+      %div{:style =>"width: 154px;", :class=>"sc sc-left-label"} 32%
+      %div{:style =>"width: 74px;", :class=>"sc sc-left-data sc-commercial"}
+      %div{:style =>"width: 92px;", :class=>"sc sc-left-label"} 59%
+      %div{:style =>"width: 135px;", :class=>"sc sc-left-data sc-car"}
+    %div{:style => "width:228px; border-left:1px solid #AAA; float:left;"}
+      %h3 Northbound
+      %div{:style =>"width: 82px;", :class=>"sc sc-right-data sc-bike"}
+      %div{:style =>"width: 146px", :class=>"sc sc-right-label"} 27%
+      %div{:style =>"width: 67px;", :class=>"sc sc-right-data sc-commercial"}
+      %div{:style =>"width: 161px", :class=>"sc sc-right-label"} 22%
+      %div{:style =>"width: 151px;", :class=>"sc sc-right-data sc-car"}
+      %div{:style =>"width: 77px", :class=>"sc sc-right-label"} 50%
+
+  .span6
+    %div{:style => "width:228px; border-right:1px solid #AAA; float:left;"}
+      %h3 Southbound
+      %div{:style =>"width: 210px;", :class=>"sc sc-left-label"} 6%
+      %div{:style =>"width: 18px;", :class=>"sc sc-left-data sc-bike"}
+      %div{:style =>"width: 150px;", :class=>"sc sc-left-label"} 26%
+      %div{:style =>"width: 78px;", :class=>"sc sc-left-data sc-commercial"}
+      %div{:style =>"width: 23px;", :class=>"sc sc-left-label"} 68%
+      %div{:style =>"width: 205px;", :class=>"sc sc-left-data sc-car"}
+    %div{:style => "width:228px; border-left:1px solid #AAA; float:left;"}
+      %h3 Northbound
+      %div{:style =>"width: 51px;", :class=>"sc sc-right-data sc-bike"}
+      %div{:style =>"width: 177px", :class=>"sc sc-right-label"} 17%
+      %div{:style =>"width: 56px;", :class=>"sc sc-right-data sc-commercial"}
+      %div{:style =>"width: 172px", :class=>"sc sc-right-label"} 19%
+      %div{:style =>"width: 194px;", :class=>"sc sc-right-data sc-car"}
+      %div{:style =>"width: 34px", :class=>"sc sc-right-label"} 65%
+
+
+.row
+  .span3
+    .cont#frs
+  .span3
+    .cont#frn
+  .span3
+    .cont#lrs
+  .span3
+    .cont#lrn
+
+.page-header
+  %h2 Credits
+.row
+  .span4
+    Thanks to <a href="http://www.spokes.org.uk/">Spokes</a> for collecting this data.
+  .span4
+    Maps are from  <a href="http://www.opencyclemap.org/">OpenCycleMap</a> map data from <a href="http://www.openstreetmap.org/">OpenStreetMap</a> CC-BY-SA 
+  .span4
+    Charting is using <a href="http://www.highcharts.com/">Highcharts</a>
+
+:javascript
+  var xAxisCat =  ['Nov 06', 'May 07', 'Nov 07', 'May 08', 'Nov 08', 'May 09', 'Nov 09', 'May 10', 'Nov 10', 'May 11', 'Nov 11', 'May 12', 'Nov 12'];
+  
+  $(document).ready(function() {
+  	forestroadsouth = new Highcharts.Chart({
+  		chart: {
+  			renderTo: 'frs',
+  			type: 'area'
+        },
+        credits: 
+        {
+          enabled: false
+        },
+  		title: {
+  			text: 'Forest Road South'
+  		},
+  		tickmarkPlacement: 'on',
+  		title: {
+  				text: null
+  			},
+        yAxis: {
+          labels: { rotation: -90},
+          title: {
+            text: null,
+            enabled: false
+  			}
+        },
+        xAxis: {
+          labels: { step: 2, staggerLines: 2 },
+  			categories: xAxisCat,
+  			tickmarkPlacement: 'on',
+  			title: {
+  				enabled: false
+  			}
+  		},
+  		tooltip: {
+  			formatter: function() {
+  				return ''+
+  					this.x +': '+ Highcharts.numberFormat(this.y, 0, ',');
+  			}
+  		},
+  		plotOptions: {
+  			area: {
+  				stacking: 'normal',
+  				lineColor: '#666666',
+  				lineWidth: 1,
+  				marker: {
+  					lineWidth: 1,
+  					lineColor: '#666666'
+  				}
+  			}
+  		},
+  		series: [{
+            name: 'Private',
+          data: [489,491,536,500,220,245,296,253,406,367,258,279,329]
+        },
+        {
+  			name: 'Commercial',
+            data: [197,162,177,191,151,111,160,152,197,190,154,186,179]
+  		},
+        {
+  			name: 'Bikes',
+  			data: [39,39,35,38,46,44,39,51,48,48,46,50,45]
+        }
+        ]
+    });
+
+    forestroadnorth = new Highcharts.Chart({
+  		chart: {
+  			renderTo: 'frn',
+  			type: 'area'
+        },
+        credits: 
+        {
+          enabled: false
+        },
+  		title: {
+  			text: 'Forest Road North'
+  		},
+  		tickmarkPlacement: 'on',
+  		title: {
+  				text: null
+  			},
+        yAxis: {
+          labels: { rotation: -90},
+          title: {
+            text: null,
+            enabled: false
+  			}
+        },
+        xAxis: {
+          labels: { step: 2, staggerLines: 2 },
+  			categories: xAxisCat,
+  			tickmarkPlacement: 'on',
+  			title: {
+  				enabled: false
+  			}
+  		},
+  		tooltip: {
+  			formatter: function() {
+  				return ''+
+  					this.x +': '+ Highcharts.numberFormat(this.y, 0, ',');
+  			}
+  		},
+  		plotOptions: {
+  			area: {
+  				stacking: 'normal',
+  				lineColor: '#666666',
+  				lineWidth: 1,
+  				marker: {
+  					lineWidth: 1,
+  					lineColor: '#666666'
+  				}
+  			}
+  		},
+  		series: [{
+            name: 'Private',
+          data: [506,532,390,465,358,382,374,397,494,434,399,345,368]
+        },
+        {
+  			name: 'Commercial',
+  			data: [179,184,159,196,153,175,158,178,158,199,158,174,163]
+  		},
+        {
+  			name: 'Bikes',
+  			data: [133,138,159,178,130,180,165,165,139,169,177,182,199]
+        }
+        ]
+    });
+
+    lothianroadsouth = new Highcharts.Chart({
+  		chart: {
+  			renderTo: 'lrs',
+  			type: 'area'
+        },
+        credits: 
+        {
+          enabled: false
+        },
+  		title: {
+  			text: 'Lothian Road South'
+  		},
+  		tickmarkPlacement: 'on',
+  		title: {
+  				text: null
+  			},
+        yAxis: {
+          labels: { rotation: -90},
+          title: {
+            text: null,
+            enabled: false
+  			}
+        },
+        xAxis: {
+          labels: { step: 2, staggerLines: 2 },
+  			categories: xAxisCat,
+  			tickmarkPlacement: 'on',
+  			title: {
+  				enabled: false
+  			}
+  		},
+  		tooltip: {
+  			formatter: function() {
+  				return ''+
+  					this.x +': '+ Highcharts.numberFormat(this.y, 0, ',');
+  			}
+  		},
+  		plotOptions: {
+  			area: {
+  				stacking: 'normal',
+  				lineColor: '#666666',
+  				lineWidth: 1,
+  				marker: {
+  					lineWidth: 1,
+  					lineColor: '#666666'
+  				}
+  			}
+  		},
+  		series: [{
+            name: 'Private',
+          data: [488,463,551,521,681,603,571,536,610,471,551,508,501]
+        },
+        {
+  			name: 'Commercial',
+  			data: [178,204,194,240,252,224,206,214,161,193,195,242,190]
+  		},
+        {
+  			name: 'Bikes',
+  			data: [30,28,26,29,35,41,29,47,43,33,51,42,43]
+        }
+        ]
+    });
+
+
+
+
+  	lothianroadnorth = new Highcharts.Chart({
+  		chart: {
+  			renderTo: 'lrn',
+  			type: 'area'
+        },
+        credits: 
+        {
+          enabled: false
+        },
+  		title: {
+  			text: 'Lothian Road North'
+  		},
+  		tickmarkPlacement: 'on',
+  		title: {
+  				text: null
+  			},
+        yAxis: {
+          labels: { rotation: -90},
+          title: {
+            text: null,
+            enabled: false
+  			}
+        },
+        xAxis: {
+          labels: { step: 2, staggerLines: 2 },
+  			categories: xAxisCat,
+  			tickmarkPlacement: 'on',
+  			title: {
+  				enabled: false
+  			}
+  		},
+  		tooltip: {
+  			formatter: function() {
+  				return ''+
+  					this.x +': '+ Highcharts.numberFormat(this.y, 0, ',');
+  			}
+  		},
+  		plotOptions: {
+  			area: {
+  				stacking: 'normal',
+  				lineColor: '#666666',
+  				lineWidth: 1,
+  				marker: {
+  					lineWidth: 1,
+  					lineColor: '#666666'
+  				}
+  			}
+  		},
+  		series: [{
+            name: 'Private',
+          data: [658,509,610,497,662,625,633,587,640,534,641,659,655]
+        },
+        {
+  			name: 'Commercial',
+  			data: [163,173,157,169,185,202,180,205,202,166,195,180,189]
+  		},
+        {
+  			name: 'Bikes',
+  			data: [122,161,131,157,171,168,153,173,168,157,171,181,171]
+        }
+        ]
+    });
+  
+  
+  
+  
+  });

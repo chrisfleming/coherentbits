@@ -1,0 +1,14 @@
+---
+title:
+---
+
+.container
+  %header{ :class => "jumbotron subhead", :id =>"overview"}
+    %h1 Welcome to Coherent Bits
+    %p.lead We're a small software consultancy, specialising in Telecoms, Web and Data Manipulation and Visualisation 
+
+- sorted_articles.each do |post|
+  .post
+    <!-- %h1= link_to post[:title], post.path-->
+
+.clear

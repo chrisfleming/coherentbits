@@ -1,7 +1,5 @@
 require 'nanoc/tasks'
 
-
-
 desc 'Setup twitter bootstrap'
 task :bootstrap do
   # Build css
@@ -31,3 +29,10 @@ task :blog, [:slug] do |t, args|
 
 end
 
+
+desc 'Deploy Site'
+task :deploy do
+    system "nanoc compile"
+    system "nanoc deploy --target web1"
+    system "nanoc deploy --target web2"
+end

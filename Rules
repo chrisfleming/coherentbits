@@ -30,7 +30,12 @@ end
 compile '/assets/css/*'  do
   print "Doing bootstrap #{item.identifier}\n"
   filter :less
-#  filter :rainpress
+  #filter :rainpress
+end
+
+compile '/assets/js/*' do
+  print "Doing javascript  #{item.identifier}\n"
+  #filter :yui_compressor
 end
 
 compile '*' do
@@ -50,6 +55,14 @@ compile '*' do
     filter :erb
   elsif ext == 'haml' || ext.nil?
     filter :haml
+    #layout 'default'
+
+    if item[:layout]
+       layout 'visualisations'
+    else
+        layout 'default'
+    end
+
   elsif ext == 'md' || ext == 'markdown' || ext == 'erb'
     filter :erb
     filter :kramdown
@@ -57,16 +70,25 @@ compile '*' do
   elsif ext == 'less'
     filter :less
     filter :rainpress
+  elsif item.binary?
+    print "Binary object - no compilation action"
   else
     raise "Filter is not configured for #{item.identifier} in Rules file. Using #{ext} or #{:extension}"
   end
+
 
   print " .. Done\n"
 end
 
 route '/assets/css/*' do
-#  '/css.css'
+  item.identifier.chop + '.css'
 end
+
+route '/assets/js/*' do
+  item.identifier.chop + '.js'
+end
+
+
 
 
 route '*' do
